@@ -1,6 +1,6 @@
 {
   "name": "open-app",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "open app in webpage at mobile device",
   "main": "index.js",
   "repository": {

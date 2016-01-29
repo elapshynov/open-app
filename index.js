@@ -61,20 +61,15 @@ function openApp(options){
    *  scan/
    *  #Intent;
    *   package=com.google.zxing.client.android;
-   *   schema=meituanmovie;
+   *   scheme=meituanmovie;
    * end;
    */
-  function buildIntent(url){
+  function buildIntent(url, pkg){
     var scheme, action = url.replace(/^(\w+):\/\//, function(_, m){
       scheme = m;
       return '';
     });
-    //
-    var o = {
-     scheme  : scheme,
-     package : options.package
-    };
-    //
+    var o = { scheme  : scheme, package : pkg };
     var meta = Object.keys(o).map(function(key){
       return [ key, o[ key ] ].join('=');
     }).map(function(part){
@@ -89,18 +84,21 @@ function openApp(options){
    */
   return function open(){
     /**
-     * android support iframe call schema (NOT include SAMSUNG devices),
-     * iOS9 and later is no longer support iframe call schema.
+     * android support iframe call scheme (NOT include SAMSUNG devices),
+     * iOS9 and later is no longer support iframe call scheme.
      */
     if(os == 'android' || (os == 'iphone' && version < 9)){
       if(isSamsung){
-        location.href = buildIntent(options.schema);
+        location.href = buildIntent(
+          options.scheme,
+          options.package
+        );
       }else{
-        createIFrame(options.schema);
+        createIFrame(options.scheme);
       }
     }else{
       // iOS8 and earlier .
-      location.href = options.schema;
+      location.href = options.scheme;
     }
   };
 };
