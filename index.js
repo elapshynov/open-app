@@ -94,7 +94,7 @@ function openApp(options){
      */
     if(os == 'android' || (os == 'iphone' && version < 9)){
       if(isSamsung){
-        createIFrame(buildIntent(options.schema));
+        location.href = buildIntent(options.schema);
       }else{
         createIFrame(options.schema);
       }
