@@ -40,8 +40,8 @@ function openApp(options){
   var ua = navigator.userAgent;
   var isChrome  = /chrome/i.test(ua);
   var isSamsung = /samsung/i.test(ua);
-  var os        = (/iphone|android/i.exec(ua) || [])[0].toLowerCase();
-  var version   = parseInt((/version\/(\d\.\d)/i.exec(ua) || [])[1], 10);
+  var os        = ((/iphone|android/i.exec(ua) || [ 'unknow' ])[0]).toLowerCase();
+  var version   = parseInt((/version\/(\d\.\d)/i.exec(ua) || [ 0 ])[1], 10);
   /**
    * [createIFrame description]
    * @param  {[type]} src [description]
@@ -81,7 +81,7 @@ function openApp(options){
       return part + ';';
     }).join('');
     //
-    return 'intent://' + action + '#Intent;' + meta + 'end;'
+    return 'intent://' + action + '#Intent;' + meta + 'end;';
   };
   /**
    * [open description]
@@ -104,3 +104,14 @@ function openApp(options){
     }
   };
 };
+
+// expose `openApp` object
+if (typeof define === 'function' && define.amd) {
+  define([], function() {
+    return openApp;
+  });
+} else if (typeof module && module.exports) {
+  module.exports = openApp;
+} else {
+  this.openApp = openApp;
+}
