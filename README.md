@@ -5,6 +5,10 @@ open app in webpage at mobile device .
 
 ## Example
 
+```html
+<script src="//cdn.rawgit.com/song940/open-app/master/index.js" ></script>
+```
+
 ```js
 var open = openApp({
   package: 'com.sankuai.movie',
