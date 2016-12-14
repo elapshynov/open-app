@@ -12,7 +12,7 @@ open app in webpage at mobile device .
 ```js
 var open = openApp({
   package: 'com.sankuai.movie',
-  schema : 'meituanmovie://www.meituan.com/movie?id=78535&nm=功夫熊猫3'
+  scheme : 'meituanmovie://www.meituan.com/movie?id=78535&nm=功夫熊猫3'
 });
 
 open(); // open app

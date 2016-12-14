@@ -37,11 +37,20 @@
  *
  */
 function openApp(options){
+  
+  if(typeof options === 'undefined'){
+    options = {};
+  }
+  if(typeof options.schema !== 'undefined'){
+    throw new TypeError('Are you typo? do you want `options.schema` ?');
+  }
+  
   var ua = navigator.userAgent;
   var isChrome  = /chrome/i.test(ua);
   var isSamsung = /samsung/i.test(ua);
   var os        = ((/iphone|android/i.exec(ua) || [ 'unknow' ])[0]).toLowerCase();
   var version   = parseInt((/version\/(\d\.\d)/i.exec(ua) || [ 0 ])[1], 10);
+  
   /**
    * [createIFrame description]
    * @param  {[type]} src [description]
