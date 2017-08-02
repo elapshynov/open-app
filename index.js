@@ -43,7 +43,7 @@ function openApp(options){
     options = {};
   }
   if(typeof options.schema !== 'undefined'){
-    throw new TypeError('Are you typo? do you want `options.schema` ?');
+    throw new TypeError('Are you typo? do you want `options.scheme` ?');
   }
   
   var ua = navigator.userAgent;
@@ -79,7 +79,7 @@ function openApp(options){
       scheme = m;
       return '';
     });
-    var o = { scheme  : scheme, package : pkg };
+    var o = { scheme: scheme, package: pkg };
     var meta = Object.keys(o).map(function(key){
       return [ key, o[ key ] ].join('=');
     }).map(function(part){
