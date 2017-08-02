@@ -31,7 +31,8 @@
  *     NOT INSTALLED: nothing
  *   }
  *   android: {
- *
+ *     INSTALLED: OK
+ *     NOT INSTALLED: nothing
  *   }
  * }
  *
@@ -117,7 +118,7 @@ if (typeof define === 'function' && define.amd) {
   define([], function() {
     return openApp;
   });
-} else if (typeof module && module.exports) {
+} else if (typeof module === 'object' && module.exports) {
   module.exports = openApp;
 } else {
   this.openApp = openApp;
