@@ -43,7 +43,7 @@
  * }
  *
  */
-function openApp(options){
+function configureOpenApp(options){
   // not object type
   if(!options || typeof options !== 'object'){
     options = {};
