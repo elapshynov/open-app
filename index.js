@@ -1,7 +1,9 @@
 /**
- * [openApp description]
- * @param  {[type]} options [description]
- * @return {[type]}         [description]
+ * Configure the open-app function
+ * @param {Object} options - Scheme and Package options to open mobile app
+ * @param {string} options.scheme - URL Scheme to open mobile app
+ * @param {string} options.package - Android Package to open on Samsung mobile devices
+ * @return {Function} callback - Open app
  *
  *
  * TEST CASE:
@@ -38,12 +40,13 @@
  *
  */
 function openApp(options){
-  
-  if(typeof options === 'undefined'){
+  // not object type
+  if(!options || typeof options !== 'object'){
     options = {};
   }
+
   if(typeof options.scheme !== 'undefined'){
-    throw new TypeError('Are you typo? do you want `options.scheme` ?');
+    throw new TypeError('Please specify `options.scheme`. It is required to open mobile app');
   }
   
   var ua = navigator.userAgent;
@@ -53,11 +56,10 @@ function openApp(options){
   var version   = parseInt((/version\/(\d\.\d)/i.exec(ua) || [ 0 ])[1], 10);
   
   /**
-   * [createIFrame description]
-   * @param  {[type]} src [description]
-   * @return {[type]}     [description]
+   * @param  {string} src - URL Scheme to open mobile app
+   * @return {void}
    */
-  function createIFrame(src){
+  function createIFrame(src = ''){
     var iframe = document.createElement('iframe');
     iframe.src = src;
     document.body.appendChild(iframe);
@@ -73,6 +75,10 @@ function openApp(options){
    *   package=com.google.zxing.client.android;
    *   scheme=meituanmovie;
    * end;
+   * 
+   * @param  {string} url - URL Scheme to open mobile app
+   * @param  {string} pkg - Android Package to open on Samsung mobile devices
+   * @return {string} intent - Intent to open on Samsung mobile devices
    */
   function buildIntent(url, pkg){
     var scheme, action = url.replace(/^(\w+):\/\//, function(_, m){
@@ -85,12 +91,13 @@ function openApp(options){
     }).map(function(part){
       return part + ';';
     }).join('');
-    //
+
+    // intent string
     return 'intent://' + action + '#Intent;' + meta + 'end;';
   };
   /**
-   * [open description]
-   * @return {[type]} [description]
+   * Open app in webpage on mobile device
+   * @return {void}
    */
   return function open(){
     /**
