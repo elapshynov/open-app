@@ -42,7 +42,7 @@ function openApp(options){
   if(typeof options === 'undefined'){
     options = {};
   }
-  if(typeof options.schema !== 'undefined'){
+  if(typeof options.scheme !== 'undefined'){
     throw new TypeError('Are you typo? do you want `options.scheme` ?');
   }
   
