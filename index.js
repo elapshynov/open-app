@@ -107,7 +107,7 @@ function openApp(options){
         createIFrame(options.scheme);
       }
     }else{
-      // iOS8 and earlier .
+      // iOS9 and later
       location.href = options.scheme;
     }
   };
