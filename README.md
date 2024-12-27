@@ -10,18 +10,18 @@ $ npm install open-app
 or
 
 ```html
-<script src="//cdn.rawgit.com/song940/open-app/master/index.js" ></script>
+<script src="//cdn.jsdelivr.net/gh/elapshynov/open-app@master/dist/index.js" ></script>
 ```
 
 ### Example
 
 ```js
-var open = openApp({
+var openApp = configureOpenApp({
   package: 'com.sankuai.movie',
   scheme : 'meituanmovie://www.meituan.com/movie?id=78535&nm=功夫熊猫3'
 });
 
-open(); // open app
+openApp(); // open app based on device
 ```
 
 ### Contributing

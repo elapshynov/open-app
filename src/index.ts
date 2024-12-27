@@ -1,5 +1,4 @@
 /**
- * Source: https://github.com/elapshynov/open-app/blob/master/index.js
  *
  * Configure the open-app function
  * @param {Object} options - Scheme and Package options to open mobile app
@@ -151,7 +150,7 @@ export function configureOpenApp (options: {
 				createIFrame(options.scheme);
 			}
 		} else {
-			// ios version 9 and later
+			// desktop and ios version 9 or later
 			// gives an error prompt if app is not installed
 			// `options.fallback` is recommended for this case
 			location.href = options.scheme;

@@ -1,5 +1,4 @@
 /**
- * Source: https://github.com/elapshynov/open-app/blob/master/index.js
  *
  * Configure the open-app function
  * @param {Object} options - Scheme and Package options to open mobile app
