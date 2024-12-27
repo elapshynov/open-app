@@ -6,7 +6,7 @@
  * @param {string} options.package - Android Package to open on Samsung mobile devices
  * @param {number} options.fallbackTimeout - Timeout in miliseconds to open fallback url. Defaults to 2000 ms
  * @param {string} options.fallbackAndroid - Fallback to open for Android device if app is not installed
- * @param {string} options.fallbackIos - Fallback to open for iOS device if app is not installed
+ * @param {string} options.fallbackIos - Fallback to open for iOS device if app is not installed. Is recommended for iOS9 and later
  * @param {string} options.fallbackSamsung - Fallback to open for Samsung device if app is not installed
  * @param {string} options.fallbackDesktop - Fallback to open for Desktop device
  * @return {Function} callback - Open app

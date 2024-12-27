@@ -20,7 +20,7 @@
      * @param {string} options.package - Android Package to open on Samsung mobile devices
      * @param {number} options.fallbackTimeout - Timeout in miliseconds to open fallback url. Defaults to 2000 ms
      * @param {string} options.fallbackAndroid - Fallback to open for Android device if app is not installed
-     * @param {string} options.fallbackIos - Fallback to open for iOS device if app is not installed
+     * @param {string} options.fallbackIos - Fallback to open for iOS device if app is not installed. Is recommended for iOS9 and later
      * @param {string} options.fallbackSamsung - Fallback to open for Samsung device if app is not installed
      * @param {string} options.fallbackDesktop - Fallback to open for Desktop device
      * @return {Function} callback - Open app
@@ -71,10 +71,12 @@
         var deviceData = deviceDetect(ua);
         // device
         var isAndroid = deviceData.isAndroid;
+        var isIos = deviceData.isIOS;
         var isSamsung = deviceData.isSamsung;
         var isSafari = deviceData.isSafari;
         // version
         var version = parseInt(deviceData.version, 10);
+        var isIos8OrLess = isIos && version < 9;
         /**
          * @param  {string} src - URL Scheme to open mobile app
          * @return {void}
@@ -130,7 +132,7 @@
                     location.href = options.fallbackAndroid;
                 }
             }
-            else if (isSafari && options.fallbackIos) {
+            else if (isIos && options.fallbackIos) {
                 location.href = options.fallbackIos;
             }
             else if (options.fallbackDesktop) {
@@ -146,8 +148,7 @@
              * Android supports to iframe url method (NOT includes SAMSUNG devices they require Intent),
              * iOS9 and later is no longer support iframe url method.
              */
-            if (isAndroid || (isSafari && version < 9)) {
-                // samsung
+            if (isAndroid || isIos8OrLess) {
                 if (isSamsung) {
                     location.href = buildIntent(options.scheme, options.package);
                 }
@@ -158,8 +159,8 @@
             }
             else {
                 // desktop and ios version 9 or later
-                // gives an error prompt if app is not installed
-                // `options.fallback` is recommended for this case
+                // ios gives an error prompt if app is not installed
+                // `options.fallbackIos` is recommended for this case
                 location.href = options.scheme;
             }
             setTimeout(function () {
@@ -208,6 +209,7 @@
         else if (/(BlackBerry|BB10)/i.test(ua)) {
             type = 'mobile';
             device = 'blackberry';
+            os = 'blackberry';
         }
         else if (/(Samsung)/i.test(ua)) {
             type = 'mobile';
