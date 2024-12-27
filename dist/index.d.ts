@@ -53,4 +53,3 @@ export declare function configureOpenApp(options: {
     fallbackSamsung?: string;
     fallbackIos?: string;
 }): () => void;
-//# sourceMappingURL=index.d.ts.map

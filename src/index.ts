@@ -162,20 +162,3 @@ export function configureOpenApp (options: {
 		}, options.fallbackTimeout || 2000);
 	};
 }
-
-declare const window: any;
-declare function define(...args: any[]): any;
-declare const module: {
-	exports: any;
-};
-
-// expose `openApp` object
-if (typeof define === 'function' && window.define.amd) {
-  define([], function() {
-    return configureOpenApp;
-  });
-} else if (typeof module === 'object' && module.exports) {
-  module.exports = configureOpenApp;
-} else {
-	(this as any).openApp = configureOpenApp;
-}
