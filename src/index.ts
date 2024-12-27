@@ -353,6 +353,49 @@ export function parseUserAgent (ua: string): DeviceMeta {
  *
  */
 export function deviceDetect (ua: string): DevideDetectResult {
+  if (!ua) {
+    ua = navigator.userAgent.toString()
+  }
+
+  if ((window as any).UAParser) {
+    const uap = new (window as any).UAParser()
+    uap.setUA(ua)
+    const result = uap.getResult()
+
+    return {
+      isDesktop:
+        result.device.type !== 'mobile' &&
+        result.device.type !== 'tablet' &&
+        result.device.type !== 'wearable',
+      isMobile: result.device.type === 'mobile',
+      isTablet: result.device.type === 'tablet',
+
+      isAndroid: result.os.name === 'Android',
+      isSamsung: result.device.vendor === 'Samsung',
+      isIphone:
+        result.device.type === 'mobile' && result.device.vendor === 'Apple',
+      isIpad:
+        result.device.type === 'tablet' && result.device.vendor === 'Apple',
+      isMac: result.os.name === 'Mac OS',
+
+      isWindows: result.os.name === 'Windows',
+      isLinux: result.os.name === 'Linux',
+      isMacOs: result.os.name === 'macOS',
+      isIOS: result.os.name === 'iOS',
+
+      isChrome:
+        result.browser.name === 'Chrome' ||
+        result.browser.name === 'Chromium' ||
+        result.browser.name === 'Chrome WebView' ||
+        result.browser.name === 'Chrome Mobile' ||
+        result.browser.name === 'Edge',
+      isSafari: result.browser.name === 'Safari',
+      isIE: result.browser.name === 'IE',
+      isFirefox: result.browser.name === 'Firefox',
+      isOpera: result.browser.name === 'Opera'
+    }
+  }
+
   const deviceMeta = parseUserAgent(ua)
 
   return {
