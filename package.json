@@ -3,10 +3,16 @@
   "version": "1.0.6",
   "description": "open app in webpage at mobile device",
   "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
   "repository": {
     "type": "git",
     "url": "ssh://git@git.sankuai.com/~liusong02/open-app.git"
   },
   "author": "lsong",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
 }
