@@ -4,7 +4,7 @@
     "allowJs": true,
     "declarationMap": true,
     "declaration": true,
-    "target": "es5"
+    "target": "ES6"
   },
   "include": ["./src/**/*.ts"]
 }

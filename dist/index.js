@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.configureOpenApp = configureOpenApp;
 /**
  * Source: https://github.com/elapshynov/open-app/blob/master/index.js
  *
@@ -48,7 +45,7 @@ exports.configureOpenApp = configureOpenApp;
  * }
  *
  */
-function configureOpenApp(options) {
+export function configureOpenApp(options) {
     // not object type
     if (!options || typeof options !== 'object') {
         options = {};
@@ -66,7 +63,7 @@ function configureOpenApp(options) {
     var isIphone = os == 'iphone';
     var isAndroid = os == 'android';
     // version
-    var version = parseInt("".concat((/version\/(\d\.\d)/i.exec(ua) || [0])[1]), 10);
+    var version = parseInt(`${(/version\/(\d\.\d)/i.exec(ua) || [0])[1]}`, 10);
     /**
      * @param  {string} src - URL Scheme to open mobile app
      * @return {void}
@@ -151,7 +148,7 @@ function configureOpenApp(options) {
             // `options.fallback` is recommended for this case
             location.href = options.scheme;
         }
-        setTimeout(function () {
+        setTimeout(() => {
             openFallback();
         }, options.fallbackTimeout || 2000);
     };
