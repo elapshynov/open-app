@@ -8,6 +8,7 @@
  * @param {string} options.fallbackAndroid - Fallback to open for Android device if app is not installed
  * @param {string} options.fallbackIos - Fallback to open for iOS device if app is not installed
  * @param {string} options.fallbackSamsung - Fallback to open for Samsung device if app is not installed
+ * @param {string} options.fallbackDesktop - Fallback to open for Desktop device
  * @return {Function} callback - Open app
  *
  *
@@ -51,4 +52,5 @@ export declare function configureOpenApp(options: {
     fallbackAndroid?: string;
     fallbackSamsung?: string;
     fallbackIos?: string;
+    fallbackDesktop?: string;
 }): () => void;

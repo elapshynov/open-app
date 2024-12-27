@@ -8,6 +8,7 @@
  * @param {string} options.fallbackAndroid - Fallback to open for Android device if app is not installed
  * @param {string} options.fallbackIos - Fallback to open for iOS device if app is not installed
  * @param {string} options.fallbackSamsung - Fallback to open for Samsung device if app is not installed
+ * @param {string} options.fallbackDesktop - Fallback to open for Desktop device
  * @return {Function} callback - Open app
  *
  *
@@ -51,6 +52,7 @@ export function configureOpenApp (options: {
 	fallbackAndroid?: string;
 	fallbackSamsung?: string;
 	fallbackIos?: string;
+	fallbackDesktop?: string;
 }): () => void {
 	// not object type
 	if (!options || typeof options !== 'object') {
@@ -130,6 +132,8 @@ export function configureOpenApp (options: {
 			}
 		} else if (isSafari && options.fallbackIos) {
 			location.href = options.fallbackIos;
+		} else if (options.fallbackDesktop) {
+			window.open(options.fallbackDesktop, '_blank');
 		}
 	}
 	/**
