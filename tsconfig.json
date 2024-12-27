@@ -2,6 +2,8 @@
   "compilerOptions": {
     "outDir": "./dist",
     "allowJs": true,
+    "declarationMap": true,
+    "declaration": true,
     "target": "es5"
   },
   "include": ["./src/**/*.ts"]
