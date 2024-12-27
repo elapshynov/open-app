@@ -49,7 +49,7 @@ function configureOpenApp(options){
     options = {};
   }
 
-  if(typeof options.scheme !== 'undefined' || !options.scheme){
+  if(typeof options.scheme === 'undefined' || !options.scheme){
     throw new TypeError('Please specify `options.scheme`. It is required to open mobile app');
   }
   
