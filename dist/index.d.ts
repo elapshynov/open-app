@@ -54,3 +54,81 @@ export declare function configureOpenApp(options: {
     fallbackIos?: string;
     fallbackDesktop?: string;
 }): () => void;
+type DevideDetectResult = {
+    isMobile?: boolean;
+    isDesktop?: boolean;
+    isTablet?: boolean;
+    isAndroid?: boolean;
+    isWindows?: boolean;
+    isLinux?: boolean;
+    isMacOs?: boolean;
+    isIOS?: boolean;
+    isChrome?: boolean;
+    isSafari?: boolean;
+    isIE?: boolean;
+    isFirefox?: boolean;
+    isOpera?: boolean;
+    isIpad?: boolean;
+    isIphone?: boolean;
+    isMac?: boolean;
+    isSamsung?: boolean;
+    version?: string;
+};
+type DeviceType = 'mobile' | 'tablet' | 'desktop' | 'watch' | 'tv' | 'embedded';
+type DeviceMeta = {
+    type?: DeviceType;
+    device?: string;
+    version?: string;
+    browser?: string;
+    os?: string;
+};
+/**
+ * Parse UserAgent string
+ *
+ * @example
+ * const ua = navigator.userAgent
+ * const deviceMeta = parseUserAgent(ua)
+ * console.log(deviceMeta)
+ *
+ * @param {string} ua - UserAgent string
+ * @returns {Object} data - Device meta data
+ * @returns {string} data.type - Device type
+ * @returns {string} data.device - Device name
+ * @returns {string} data.browser - Browser name
+ * @returns {string} data.os - OS name
+ * @returns {string} data.version - Browser version
+ *
+ */
+export declare function parseUserAgent(ua: string): DeviceMeta;
+/**
+ * Device detection
+ *
+ * @example
+ * const ua = navigator.userAgent
+ * const deviceMeta = deviceDetect(ua)
+ * console.log(deviceMeta)
+ *
+ * @param {string} ua - UserAgent string
+ * @returns {Object} results - Device detection results
+ * @returns {boolean} results.isMobile - Is mobile device
+ * @returns {boolean} results.isDesktop - Is desktop device
+ * @returns {boolean} results.isTablet - Is tablet device
+ * @returns {boolean} results.isAndroid - Is Android device
+ * @returns {boolean} results.isSamsung - Is Samsung device
+ * @returns {boolean} results.isIphone - Is iPhone device
+ * @returns {boolean} results.isIpad - Is iPad device
+ * @returns {boolean} results.isMac - Is Mac device
+ * @returns {boolean} results.isWindows - Is Windows device
+ * @returns {boolean} results.isLinux - Is Linux device
+ * @returns {boolean} results.isMacOs - Is MacOs device
+ * @returns {boolean} results.isIOS - Is iOS device
+ * @returns {boolean} results.isChrome - Is Chrome browser
+ * @returns {boolean} results.isSafari - Is Safari browser
+ * @returns {boolean} results.isIE - Is IE browser
+ * @returns {boolean} results.isFirefox - Is Firefox browser
+ * @returns {boolean} results.isOpera - Is Opera browser
+ * @returns {string} results.version - Browser version
+ *
+ */
+export declare function deviceDetect(ua: string): DevideDetectResult;
+export {};
